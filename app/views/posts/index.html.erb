@@ -1,0 +1,24 @@
+<h1>All Posts</h1>
+
+<% if @posts.any? %>
+<ul class="post-list">
+    <% @post.each do |post| %>
+    <li class="post-item">
+        <p><% simple_format(post.content) %></p>
+         <% if user_signed_in? %>
+            <p class="post-author">
+            — <strong><%= post.user.username || post.user.email %></strong>
+          </p>
+        <% end %>
+    </li>
+    <% end %>
+</ul>
+<% else %>
+  <p>No posts yet. <%= link_to "Be the first to post!", new_post_path %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to "New Post", new_post_path, class: "button" %>
+<% else %>
+  <p><%= link_to "Sign in", new_user_session_path %> to see authors and create posts.</p>
+<% end %>
