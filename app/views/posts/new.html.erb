@@ -1,0 +1,11 @@
+<h1>New Secret Post</h1>
+
+<%= form_with model: @post, local: true do |form| %>
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit "Create Post" %>
+  </div>
+<% end %>

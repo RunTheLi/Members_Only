@@ -1,0 +1,21 @@
+<h1>Secret Posts</h1>
+
+<% @posts.each do |post| %>
+  <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+    <p><%= post.content %></p>
+    <% if user_signed_in? %>
+      <small>— <%= post.user.name || post.user.email %></small>
+    <% else %>
+      <small>— Anonymous</small>
+    <% end %>
+  </div>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to "New Post", new_post_path %> |
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign in", new_user_session_path %> |
+  <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
+
